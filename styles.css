@@ -1,0 +1,552 @@
+:root {
+  --bg: #fefaf5;
+  --card: #ffffff;
+  --primary: #b71c1c;
+  --primary-strong: #7f0000;
+  --text: #2b2b2b;
+  --muted: #5a4a42;
+  --border: #f0e2d8;
+  --gold: #c9a03d;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', 'Noto Sans Bengali', system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  padding-top: 80px;
+  scroll-behavior: smooth;
+}
+
+/* Navbar */
+.nav-bar {
+  background: rgba(255, 248, 240, 0.98);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid var(--border);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 0;
+  flex-wrap: wrap;
+}
+
+.logo-text {
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #b71c1c 0%, #8b2c1d 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.logo small {
+  font-size: 0.85rem;
+  color: #8b5a3c;
+  font-weight: 500;
+}
+
+.nav-actions button {
+  background: var(--primary);
+  border: none;
+  padding: 0.7rem 1.6rem;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-actions button:hover {
+  background: var(--primary-strong);
+  transform: scale(0.97);
+}
+
+/* Hero Section - No grey block */
+.hero {
+  min-height: 85vh;
+  background-image: linear-gradient(95deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.2)), url('https://images.unsplash.com/photo-1555992336-03a23c7d7e60?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.badge {
+  background: rgba(183, 28, 28, 0.85);
+  display: inline-block;
+  padding: 0.4rem 1.2rem;
+  border-radius: 60px;
+  font-weight: 600;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  margin: 1rem 0 0.5rem;
+}
+
+.hero-buttons button {
+  margin: 0.5rem;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#scrollMenuBtn {
+  background: #fff;
+  color: #b71c1c;
+}
+
+#loginBtnHero {
+  background: var(--primary);
+  color: white;
+}
+
+/* About Section */
+.about-section {
+  padding: 4rem 0;
+  background: #fffcf9;
+}
+
+.about-section h2, .food-grid h2 {
+  text-align: center;
+  font-size: 2.3rem;
+  color: var(--primary-strong);
+  margin-bottom: 1rem;
+}
+
+.about-section p {
+  max-width: 780px;
+  margin: 0 auto;
+  line-height: 1.8;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Food Menu Grid */
+.food-grid {
+  padding: 4rem 0;
+  background: #fffcf9;
+}
+
+.food-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.food-card {
+  background: white;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  border: 1px solid #f3e5de;
+}
+
+.food-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.12);
+}
+
+.food-card img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.food-info {
+  padding: 1.5rem;
+}
+
+.food-info h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+  color: #2c221c;
+}
+
+.food-info p {
+  color: #6b4e3a;
+  line-height: 1.5;
+  margin: 0.5rem 0;
+  font-size: 0.95rem;
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.price {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.food-card button {
+  background: var(--primary);
+  border: none;
+  padding: 0.7rem 1.4rem;
+  border-radius: 40px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.food-card button:hover {
+  background: #8b1e1e;
+}
+
+/* Order Section */
+.order-section {
+  background: linear-gradient(120deg, #fff2e9, #ffffff);
+  text-align: center;
+  padding: 3.5rem 0;
+}
+
+.order-card {
+  max-width: 650px;
+  margin: auto;
+  background: white;
+  border-radius: 40px;
+  padding: 2rem;
+  box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05);
+}
+
+.order-card button {
+  margin-top: 1rem;
+  padding: 1rem 1.8rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Admin Panel */
+.admin-wrapper {
+  background: #fffefc;
+  border-radius: 32px;
+  padding: 2rem;
+  margin: 1rem auto;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.05);
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.admin-header button {
+  background: #333;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.2rem;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+@media (max-width: 800px) {
+  .admin-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--border);
+  padding: 1.5rem;
+  border-radius: 24px;
+}
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.summary-cards div {
+  background: #fff4ef;
+  padding: 1rem;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.summary-cards strong {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.sales-toggle {
+  display: flex;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.sales-toggle button {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 40px;
+  border: 1px solid #ffcdb5;
+  background: #fff2ea;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.sales-toggle button.active {
+  background: var(--primary);
+  color: white;
+  border: none;
+}
+
+canvas {
+  max-width: 100%;
+  background: white;
+  border-radius: 24px;
+  margin: 1rem 0;
+}
+
+/* Menu Management */
+.menu-form {
+  display: grid;
+  gap: 0.8rem;
+  margin-bottom: 1.5rem;
+}
+
+.menu-form input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+.menu-form button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 40px;
+  cursor: pointer;
+}
+
+.menu-list {
+  margin-top: 1rem;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff5ef;
+  padding: 0.8rem 1rem;
+  border-radius: 20px;
+  margin-bottom: 0.8rem;
+}
+
+.menu-item button {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+/* Modals */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: white;
+  width: min(500px, 90%);
+  border-radius: 32px;
+  padding: 2rem;
+  position: relative;
+}
+
+.close-modal {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.login-tabs {
+  display: flex;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.login-tabs button {
+  flex: 1;
+  padding: 0.7rem;
+  border-radius: 40px;
+  border: 1px solid #e0ccc0;
+  background: #faf3ed;
+  cursor: pointer;
+}
+
+.login-tabs button.active {
+  background: var(--primary);
+  color: white;
+}
+
+#loginFields input, #signupFields input {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+}
+
+#loginSubmitBtn, #signupSubmitBtn, #confirmOrderBtn {
+  width: 100%;
+  padding: 0.8rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.admin-hint {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  background: #f3e3dc;
+  padding: 0.5rem;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.payment-methods {
+  margin: 1rem 0;
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.modal-note {
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  background: #1e1917;
+  color: #e6ccc0;
+  padding: 2.5rem 0;
+  margin-top: 2rem;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.owner-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.footer-content a {
+  color: #e6b17e;
+  text-decoration: none;
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  body {
+    padding-top: 100px;
+  }
+  .nav-inner {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .hero {
+    min-height: 60vh;
+  }
+}

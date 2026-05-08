@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>বিবির বিরিয়ানি | কুমিরা, চট্টগ্রাম</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<nav class="nav-bar">
+  <div class="container nav-inner">
+    <div class="logo">
+      <span class="logo-text">বিবির বিরিয়ানি</span>
+      <small>খাঁটি চট্টগ্রামের স্বাদ</small>
+    </div>
+    <div class="nav-actions">
+      <button id="loginBtn" class="nav-login">প্রবেশ করুন</button>
+      <button id="logoutBtnNav" class="nav-login hidden">প্রস্থান</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-content">
+    <span class="badge">কুমিরা, আন্তর্জাতিক ইসলামী বিশ্ববিদ্যালয়ের পাশে</span>
+    <h1>আসল চট্টগ্রামের স্বাদ</h1>
+    <p>প্রাচীন মসল্লা ও ঐতিহ্যের ফিউশনে তৈরি আমাদের পদগুলো উপভোগ করুন।</p>
+    <div class="hero-buttons">
+      <button id="scrollMenuBtn">মেনু দেখুন</button>
+      <button id="loginBtnHero">অর্ডার করতে লগইন</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="about-section" id="about">
+    <div class="container">
+      <h2>আমাদের গল্প</h2>
+      <p>বিবির বিরিয়ানি কুমিরার একটি স্বনামধন্য খাবার ঘর, যেখানে কাচ্চি, মুরগির দোপেঁয়াজা, গরুর কালা ভুনা ও বিশেষ বিরিয়ানি পরিবেশন করা হয়।</p>
+    </div>
+  </section>
+
+  <section class="food-grid" id="menu">
+    <div class="container">
+      <h2>✨ স্পেশাল মেনু ✨</h2>
+      <div class="food-cards" id="foodCards"></div>
+    </div>
+  </section>
+
+  <section class="order-section" id="orderSection">
+    <div class="container order-card">
+      <h2>অর্ডার করতে প্রস্তুত?</h2>
+      <p>আমাদের আইটেম গুলো অর্ডার করতে লগইন করুন।</p>
+      <button id="placeOrderBtn">অর্ডার করুন</button>
+    </div>
+  </section>
+
+  <!-- Admin Panel - Initially Hidden -->
+  <section class="admin-section hidden" id="adminPanel">
+    <div class="container admin-wrapper">
+      <div class="admin-header">
+        <h2>📊 অ্যাডমিন প্যানেল</h2>
+        <button id="logoutBtn">লগআউট</button>
+      </div>
+      
+      <div class="admin-tabs">
+        <button class="admin-tab-btn active" data-tab="sales">বিক্রয় প্রতিবেদন</button>
+        <button class="admin-tab-btn" data-tab="menu">মেনু ব্যবস্থাপনা</button>
+        <button class="admin-tab-btn" data-tab="employees">কর্মী ব্যবস্থাপনা</button>
+      </div>
+      
+      <!-- Sales Tab -->
+      <div id="salesTab" class="admin-tab-content active">
+        <div class="panel">
+          <h3>বিক্রয় সারাংশ</h3>
+          <div class="summary-cards">
+            <div><strong id="dailyRevenue">৳0</strong><span>আজকের আয়</span></div>
+            <div><strong id="monthRevenue">৳0</strong><span>৩০ দিনের আয়</span></div>
+            <div><strong id="totalOrders">0</strong><span>মোট অর্ডার</span></div>
+            <div><strong id="topFood">-</strong><span>বেস্ট সেলিং</span></div>
+          </div>
+          <div class="sales-toggle">
+            <button id="todaySalesBtn" class="active">আজ</button>
+            <button id="monthSalesBtn">গত ৩০ দিন</button>
+          </div>
+          <canvas id="salesChart" width="500" height="220"></canvas>
+          <canvas id="salesPieChart" width="500" height="220"></canvas>
+        </div>
+      </div>
+      
+      <!-- Menu Tab -->
+      <div id="menuTab" class="admin-tab-content hidden">
+        <div class="panel">
+          <h3>মেনু ব্যবস্থাপনা</h3>
+          <div class="menu-form">
+            <input type="text" id="foodNameInput" placeholder="আইটেমের নাম">
+            <input type="number" id="foodPriceInput" placeholder="মূল্য (৳)">
+            <input type="number" id="foodDiscountInput" placeholder="ছাড় (%)" value="0">
+            <input type="file" id="foodImageInput" accept="image/*">
+            <textarea id="foodDescInput" placeholder="বিবরণ" rows="2"></textarea>
+            <button id="addFoodBtn">আইটেম যোগ করুন</button>
+          </div>
+          <h4>বর্তমান মেনু আইটেমসমূহ</h4>
+          <div id="adminFoodList" class="menu-list"></div>
+        </div>
+      </div>
+      
+      <!-- Employees Tab -->
+      <div id="employeesTab" class="admin-tab-content hidden">
+        <div class="employee-management">
+          <div class="employee-form-panel">
+            <h3>কর্মী নিবন্ধন / আপডেট</h3>
+            <form class="employee-form" onsubmit="return false;">
+              <input type="hidden" id="employeeId">
+              <div class="form-row">
+                <div class="form-group"><label>পূর্ণ নাম *</label><input type="text" id="empName" required></div>
+                <div class="form-group"><label>জন্ম তারিখ *</label><input type="date" id="empDob" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>মোবাইল নম্বর *</label><input type="tel" id="empPhone" placeholder="01XXXXXXXXX" required></div>
+                <div class="form-group"><label>এনআইডি নম্বর *</label><input type="text" id="empNid" placeholder="9 বা 14 ডিজিট" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>স্থায়ী ঠিকানা *</label><input type="text" id="empAddress" placeholder="জেলা, থানা" required></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>লিঙ্গ *</label><select id="empGender"><option value="">সিলেক্ট করুন</option><option value="পুরুষ">পুরুষ</option><option value="মহিলা">মহিলা</option><option value="অন্যান্য">অন্যান্য</option></select></div>
+                <div class="form-group"><label>ধর্ম *</label><select id="empReligion"><option value="">সিলেক্ট করুন</option><option value="ইসলাম">ইসলাম</option><option value="হিন্দু">হিন্দু</option><option value="বৌদ্ধ">বৌদ্ধ</option><option value="খ্রিস্টান">খ্রিস্টান</option></select></div>
+              </div>
+              <div class="form-row">
+                <div class="form-group"><label>যোগদানের তারিখ *</label><input type="date" id="empJoinDate" required></div>
+                <div class="form-group"><label>কর্মীর ছবি</label><input type="file" id="empPhoto" accept="image/*"></div>
+              </div>
+              <div class="form-buttons">
+                <button type="button" id="saveEmployeeBtn" class="btn-primary">কর্মী সংরক্ষণ</button>
+                <button type="button" id="resignEmployeeBtn" class="btn-danger">অবসর দিন</button>
+              </div>
+            </form>
+          </div>
+          <div class="employee-lists">
+            <div class="current-employees"><h3>বর্তমান কর্মীরা</h3><div id="currentEmployeeList" class="employee-list-container"></div></div>
+            <div class="past-employees"><h3>অবসরপ্রাপ্ত কর্মীরা</h3><div id="pastEmployeeList" class="employee-list-container"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Login Modal -->
+<div id="loginModal" class="modal hidden">
+  <div class="modal-content">
+    <button class="close-modal" id="closeLoginModal">✕</button>
+    <h2>স্বাগতম</h2>
+    <div class="login-tabs">
+      <button id="userLoginTab" class="active">সাইন ইন</button>
+      <button id="adminLoginTab">অ্যাডমিন</button>
+      <button id="signupTab">রেজিস্ট্রেশন</button>
+    </div>
+    <div id="loginFields">
+      <input id="loginEmail" type="email" placeholder="ইমেইল">
+      <input id="loginPassword" type="password" placeholder="পাসওয়ার্ড">
+      <div id="adminHint" class="admin-hint hidden">অ্যাডমিন: admin@bibirbiryani.com / admin123</div>
+    </div>
+    <div id="signupFields" class="hidden">
+      <input id="signupName" type="text" placeholder="পুরো নাম">
+      <input id="signupAge" type="number" placeholder="বয়স">
+      <input id="signupMobile" type="tel" placeholder="মোবাইল (01XXXXXXXXX)">
+      <input id="signupEmail" type="email" placeholder="Gmail">
+      <input id="signupPassword" type="password" placeholder="পাসওয়ার্ড">
+      <input id="signupConfirm" type="password" placeholder="পাসওয়ার্ড নিশ্চিত করুন">
+    </div>
+    <button id="loginSubmitBtn">সাইন ইন</button>
+    <button id="signupSubmitBtn" class="hidden">রেজিস্টার</button>
+  </div>
+</div>
+
+<!-- Order Modal -->
+<div id="orderModal" class="modal hidden">
+  <div class="modal-content">
+    <button class="close-modal" id="closeOrderModal">✕</button>
+    <h2>অর্ডার নিশ্চিত করুন</h2>
+    <div id="orderSummary"></div>
+    <div class="payment-methods">
+      <label class="payment-option"><input type="radio" name="paymentMethod" value="COD" checked> ক্যাশ অন ডেলিভারি (COD)</label>
+      <label class="payment-option"><input type="radio" name="paymentMethod" value="bKash"> বিকাশ</label>
+      <label class="payment-option"><input type="radio" name="paymentMethod" value="Rocket"> রকেট</label>
+    </div>
+    <button id="confirmOrderBtn">অর্ডার কনফার্ম</button>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div>
+        <img src="img/tonik.jpeg" alt="Owner Tonik Ullah seated in a car interior with sunlight through the window, appearing calm and relaxed" class="owner-photo" onerror="this.src='https://placehold.co/70x70?text=TU'">
+        <strong>মালিক:</strong> তৌনিক উল্লাহ<br>
+        <a href="#">Facebook</a>
+      </div>
+      <div>
+        <strong>পার্টনার:</strong> ফাহাদ বিন হেদায়েত<br>
+        <a href="#">Facebook</a>
+      </div>
+      <div>
+        <strong>যোগাযোগ:</strong> +8801626712165
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>>
